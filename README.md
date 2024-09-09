@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Dockerized CI/CD for Next.js Application
+
+🚀 This repository contains a basic Next.js application that is Dockerized and has a CI/CD pipeline set up using GitHub Actions.
+
+## Overview
+
+This project demonstrates how to:
+
+- Create a basic Next.js application
+- Dockerize the Next.js application for easy deployment
+- Set up Continuous Integration and Continuous Deployment (CI/CD) with GitHub Actions
+
+## Features
+
+- **Next.js**: A popular React framework for building server-rendered and statically-generated websites.
+- **Docker**: Containerize the Next.js application to ensure consistency across different environments.
+- **GitHub Actions**: Automate the testing, building, and deployment of the application using CI/CD pipelines.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Make sure you have the following installed:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [Node.js](https://nodejs.org/)
+- [Docker](https://www.docker.com/)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. **Clone the repository:**
 
-## Learn More
+   ```bash
+   git clone https://github.com/your-username/dockerized-cicd.git
+   cd dockerized-cicd
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. **Install dependencies:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. **Run the application locally:**
 
-## Deploy on Vercel
+   ```bash
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Dockerize the Application
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. **Build the Docker image:**
+
+   ```bash
+   docker build -t nextjs-app .
+   ```
+
+2. **Run the Docker container:**
+
+   ```bash
+   docker run -p 3000:3000 nextjs-app
+   ```
+
+   The application should now be running on [http://localhost:3000](http://localhost:3000).
+
+### CI/CD with GitHub Actions
+
+The CI/CD pipeline is configured to:
+
+- Run tests on every push to the `main` branch.
+- Build and deploy the Docker container automatically.
+
+To view the workflow file, check out `.github/workflows/ci-cd.yml`.
+
+## Contributing
+
+Feel free to submit issues or pull requests. Contributions are welcome!
+
+## License
+
+This project is licensed under the MIT License.
