@@ -36,8 +36,6 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ghcr.io/proatik/nextjs-docker-cicd:latest
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
 
   deploy:
     runs-on: ubuntu-22.04
