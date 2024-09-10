@@ -78,4 +78,10 @@ export const employees: Employee[] = [
     department: "Development",
     role: "Software Developer",
   },
+  {
+    id: 13,
+    name: "Farhan Nafiz",
+    department: "Development",
+    role: "Software QA",
+  },
 ];
