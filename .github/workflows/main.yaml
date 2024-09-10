@@ -39,18 +39,14 @@ jobs:
       - name: Install sshpass
         run: sudo apt-get install -y sshpass
 
-      - name: Log in to GitHub Container Registry
-        run: echo "${{ vars.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-
-      - name: Pull Docker Image from GHCR
-        run: docker pull ghcr.io/proatik/nextjs-docker-cicd:latest
-
       - name: Deploy Docker Container to VPS
         env:
           SSH_PASSWORD: ${{ vars.VPS_PASSWORD }}
         run: |
           sshpass -p $SSH_PASSWORD ssh -o StrictHostKeyChecking=no ${{ vars.VPS_USER }}@${{ vars.VPS_HOST }} << 'EOF'
+            docker login ghcr.io -u ${{ github.actor }} --password ${{ vars.GHCR_PAT }}
             docker stop nextjs-app || true
             docker rm nextjs-app || true
+            docker pull ghcr.io/proatik/nextjs-docker-cicd:latest
             docker run -d --name nextjs-app -p 80:3000 ghcr.io/proatik/nextjs-docker-cicd:latest
           EOF
