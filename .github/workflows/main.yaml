@@ -21,14 +21,6 @@ jobs:
       - name: Log in to GitHub Container Registry
         run: echo "${{ vars.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      - name: Cache Docker layers
-        uses: actions/cache@v3
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-buildx-
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
